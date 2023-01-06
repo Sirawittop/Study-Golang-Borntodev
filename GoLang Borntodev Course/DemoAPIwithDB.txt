@@ -1,0 +1,15 @@
+This is a simple Go program that sets up a connection to a MySQL database, and defines functions for interacting with the database to retrieve, insert, and delete rows from a table. The database connection is made using the mysql driver from the database/sql package, and the database connection details are passed as a string in the format username:password@protocol(address)/dbname.
+
+The Course type is defined as a struct with four fields, each with a corresponding JSON tag that specifies the names of the fields in the JSON representation of the type.
+
+The SetupDB function is used to open a connection to the MySQL database and set the connection pool settings.
+
+The getCourselist function is used to retrieve a list of courses from the database. It uses the QueryContext function on the database connection to execute a SELECT statement, and then scans the resulting rows into a slice of Course values.
+
+The insertProduct function is used to insert a new course into the database. It uses the ExecContext function on the database connection to execute an INSERT statement, and returns the last inserted ID.
+
+The getCourse function is used to retrieve a single course from the database based on its courseid. It uses the QueryRowContext function on the database connection to execute a SELECT statement and scan the resulting row into a Course value.
+
+The RemoveCourse function is used to delete a course from the database based on its courseid. It uses the ExecContext function on the database connection to execute a DELETE statement.
+
+The main function sets up a HTTP server and defines handler functions for handling HTTP requests at different routes. The /api/courses route is used to retrieve a list of courses from the database, and the /api/courses/{id} route is used to retrieve a single course by its id. The /api/courses route also accepts HTTP POST requests for inserting a new course into the database, and the /api/courses/{id} route accepts HTTP DELETE requests for deleting a course from the database.
